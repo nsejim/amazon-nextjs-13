@@ -1,6 +1,5 @@
-import Head from "next/head";
+import { Product } from "@/models/product";
 import Banner from "./components/Banner";
-import Header from "./components/Header";
 import ProductsFeed from "./components/ProductsFeed";
 
 const fetchProducts = async () => {
@@ -13,16 +12,16 @@ const fetchProducts = async () => {
 
 export default async function Home() {
 
-  const products = await fetchProducts();
+  let products = await fetchProducts() as Product[];
+  products = products.map(product => {
+    return {
+      ...product, 
+      hasPrime: Math.random() > 0.5
+    }
+  })
 
   return (
     <div className="bg-gray-100">
-      <Head>
-        <title>Amazon 2.0</title>
-      </Head>
-
-      <Header />
-
       <main className="max-w-screen-2xl mx-auto">
         {/* Banner */}
         <Banner />

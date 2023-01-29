@@ -60,6 +60,8 @@ export default function ProductsFeed({ products }: {
                         description={product.description}
                         image={product.image}
                         price={product.price}
+                        rating={product.rating}
+                        hasPrime={product.hasPrime}
                     >
                     </ProductItem>
                 ))}
