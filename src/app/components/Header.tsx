@@ -5,7 +5,16 @@ import {
     ShoppingCartIcon
 } from "@heroicons/react/outline";
 
-function Header() {
+import { getServerSession } from "next-auth/next"
+import { authOptions } from '../../pages/api/auth/[...nextauth]';
+
+import GuestUser from "./GuestUser";
+import AuthUser from "./AuthUser";
+
+
+async function Header() {
+    const session = await getServerSession(authOptions)
+
     return (
         <header>
             {/*** Top Nav*/}
@@ -28,7 +37,9 @@ function Header() {
                 {/** Right */}
                 <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap ">
                     <div className="link">
-                        <p>Hello Jimmy NSENGA</p>
+                        <div>
+                            {session?.user ? <AuthUser user={session?.user} /> : <GuestUser />}
+                        </div>
                         <p className="font-extrabold md:text-sm">Account & List</p>
                     </div>
                     <div className="link">
