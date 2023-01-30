@@ -3,7 +3,7 @@ import Banner from "./components/Banner";
 import ProductsFeed from "./components/ProductsFeed";
 
 const fetchProducts = async () => {
-  const res = await fetch("https://fakestoreapi.com/products");
+  const res = await fetch("https://fakestoreapi.com/products?limit=20");
   if (!res.ok) {
       throw new Error("failed to fetch products")
   }
@@ -13,12 +13,12 @@ const fetchProducts = async () => {
 export default async function Home() {
 
   let products = await fetchProducts() as Product[];
-  products = products.map(product => {
+  /*products = products.map(product => {
     return {
       ...product, 
       hasPrime: Math.random() > 0.5
     }
-  })
+  })*/
 
   return (
     <div className="bg-gray-100">
