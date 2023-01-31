@@ -1,8 +1,6 @@
-import Image from "next/image";
 import {
     MenuIcon,
-    SearchIcon,
-    ShoppingCartIcon
+    SearchIcon
 } from "@heroicons/react/outline";
 
 import { getServerSession } from "next-auth/next"
@@ -10,7 +8,8 @@ import { authOptions } from '../../pages/api/auth/[...nextauth]';
 
 import GuestUser from "./GuestUser";
 import AuthUser from "./AuthUser";
-
+import Logo from "./Logo";
+import CartBasket from "./CartBasket";
 
 async function Header() {
     const session = await getServerSession(authOptions)
@@ -20,19 +19,11 @@ async function Header() {
             {/*** Top Nav*/}
             <div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
                 {/** Logo */}
-                <div className="mt-2 flex items-center flex-grow sm:flex-grow-0 mx-4">
-                    <Image 
-                        src="https://links.papareact.com/f90"
-                        width={120}
-                        height={30}
-                        alt="logo"
-                        className="cursor-pointer"
-                    />
-                </div>
+                <Logo />
                 {/** Search */}
                 <div className="hidden sm:flex items-center h-10 rounded-md flex-grow cursor-pointer bg-yellow-400 hover:bg-yellow-500">
-                    <input type="text" className="p-2 h-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none px-4"/>
-                    <SearchIcon className="h-12 p-4"/>
+                    <input type="text" className="p-2 h-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none px-4" />
+                    <SearchIcon className="h-12 p-4" />
                 </div>
                 {/** Right */}
                 <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap ">
@@ -46,11 +37,9 @@ async function Header() {
                         <p>Returns</p>
                         <p className="font-extrabold md:text-sm">& Orders</p>
                     </div>
-                    <div className="relative link flex items-center">
-                        <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full font-bold text-black">0</span>
-                        <ShoppingCartIcon className="h-10" />
-                        <p className="font-extrabold md:text-sm hidden md:inline mt-2">Basket</p>
-                    </div>
+            
+                    <CartBasket />
+ 
                 </div>
 
             </div>
