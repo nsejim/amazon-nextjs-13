@@ -4,6 +4,7 @@ import { Product } from '@/models/product'
 import { StarIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
 import CurrencyFormat from 'react-currency-format';
+import AddToBacket from './AddToBacket';
 
 export const ProductItem = ({ id, title, price, description, category, image, rating, hasPrime }: Partial<Product> & {children: any}) => {
 
@@ -41,7 +42,15 @@ export const ProductItem = ({ id, title, price, description, category, image, ra
                 </div>
             )}
 
-            <button className='mt-auto button'>Add to basket</button>
+           <AddToBacket
+                key={id}
+                id={id}
+                title={title}
+                category={category}
+                description={description}
+                image={image}
+                price={price} 
+          />
 
         </div>
     )

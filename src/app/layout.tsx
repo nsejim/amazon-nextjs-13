@@ -1,5 +1,6 @@
 import Header from './components/Header'
 import './globals.css'
+import { Providers } from './providers/provider'
 
 export default function RootLayout({
   children,
@@ -14,10 +15,13 @@ export default function RootLayout({
       */}
       <head />
       <body>
-       {/*
+        <Providers>
+          {/*
         // @ts-expect-error  */}
-        <Header />
-        {children}
+          <Header />
+          {children}
+        </Providers>
+
       </body>
     </html>
   )
